@@ -1,0 +1,9 @@
+{
+  "appId": "com.healthyscheduled.app",
+  "appName": "Healthy Scheduled",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}

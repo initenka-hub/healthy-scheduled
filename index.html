@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6a9c4">
+<meta name="description" content="Healthy Scheduled — teman sehat Gen Z untuk diet, period, sport, dan kehamilan.">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
+<title>Healthy Scheduled</title>
+</head>
+<body>
+<header class="topbar">
+  <div class="brandmark">♡</div>
+  <div><div class="eyebrow">YOUR HEALTH, YOUR PACE</div><h1>Healthy <span>Scheduled</span></h1></div>
+  <button id="installBtn" class="iconbtn" aria-label="Install aplikasi" hidden>⬇</button>
+</header>
+<main>
+  <section id="home" class="page active">
+    <div class="hero">
+      <div><span class="pill">✨ Hello, Bestie!</span><h2>Sehat itu nggak harus ribet.</h2><p>Langkah kecil hari ini, kebiasaan baik untuk nanti.</p></div>
+      <div class="hero-art" aria-hidden="true">🌷</div>
+    </div>
+    <div class="sectionhead"><h3>Daily check-in</h3><span id="todayLabel"></span></div>
+    <div class="stats">
+      <div class="stat"><span>💧</span><small>Air putih</small><strong id="waterCount">0 / 8 gelas</strong><button class="mini" id="waterAdd">+ Tambah</button></div>
+      <div class="stat"><span>🏃</span><small>Aktivitas</small><strong id="activityCount">0 menit</strong><button class="mini" data-page="sport">Catat olahraga</button></div>
+    </div>
+    <div class="sectionhead"><h3>Ruang sehatmu</h3><span>5 fitur</span></div>
+    <div class="featuregrid">
+      <button class="feature pink" data-page="diet"><span>🥗</span><b>Diet & Food Scan</b><small>Catat makanan</small></button>
+      <button class="feature lilac" data-page="period"><span>🌸</span><b>Period Tracker</b><small>Kenali siklus</small></button>
+      <button class="feature mint" data-page="sport"><span>👟</span><b>Sport Tracker</b><small>Catat progres</small></button>
+      <button class="feature cream" data-page="ai"><span>💬</span><b>AI Bestie</b><small>Tanya edukasi</small></button>
+      <button class="feature wide pink" data-page="pregnancy"><span>🤰</span><b>Kehamilan</b><small>Info trimester dan nutrisi</small></button>
+    </div>
+    <div class="notice">💗 <span><b>Reminder:</b> aplikasi ini membantu pencatatan dan edukasi umum, bukan pengganti dokter atau bidan.</span></div>
+  </section>
+
+  <section id="diet" class="page">
+    <div class="pagehead"><span class="pill">🥗 NUTRITION</span><h2>Diet & Food Scan</h2><p>Makan seimbang, bukan menyiksa diri.</p></div>
+    <div class="card">
+      <h3>📷 Food Scan (demo)</h3><p class="muted">Pilih foto makanan untuk menambah catatan. Estimasi nutrisi di bawah adalah contoh, bukan hasil analisis foto otomatis.</p>
+      <label class="upload">Pilih foto makanan<input id="foodPhoto" type="file" accept="image/*" capture="environment"></label>
+      <img id="foodPreview" class="foodpreview" alt="Pratinjau makanan" hidden>
+      <label>Nama makanan<input id="foodName" placeholder="Contoh: nasi, ayam, sayur"></label>
+      <div class="twocol"><label>Perkiraan kalori<input id="foodCalories" type="number" min="0" placeholder="450"></label><label>Protein (gram)<input id="foodProtein" type="number" min="0" placeholder="25"></label></div>
+      <button class="primary" id="saveFood">Simpan makanan</button>
+    </div>
+    <div class="card">
+      <div class="sectionhead"><h3>Ringkasan hari ini</h3><span id="foodSummary">0 kkal</span></div>
+      <div id="foodList" class="listempty">Belum ada makanan dicatat.</div>
+    </div>
+    <div class="tip"><b>Isi Piringku</b><p>Usahakan ½ piring sayur dan buah, lalu lengkapi dengan karbohidrat dan protein. Kebutuhan tiap orang berbeda.</p></div>
+  </section>
+
+  <section id="period" class="page">
+    <div class="pagehead"><span class="pill">🌸 CYCLE CARE</span><h2>Period Tracker</h2><p>Catat siklusmu agar lebih mengenali polanya.</p></div>
+    <div class="card">
+      <h3>Catat menstruasi terakhir</h3>
+      <label>Hari pertama haid terakhir<input type="date" id="periodStart"></label>
+      <div class="twocol"><label>Panjang siklus (hari)<input type="number" id="cycleLength" min="15" max="60" value="28"></label><label>Lama haid (hari)<input type="number" id="periodLength" min="1" max="15" value="5"></label></div>
+      <button class="primary" id="savePeriod">Simpan & hitung perkiraan</button>
+    </div>
+    <div class="card" id="periodResult"><h3>Perkiraan siklus</h3><p class="muted">Isi tanggal haid terakhir untuk melihat perkiraan.</p></div>
+    <div class="notice">Prediksi kalender hanya perkiraan. Siklus dapat berubah dan fitur ini tidak dapat memastikan ovulasi atau mendiagnosis kondisi kesehatan.</div>
+  </section>
+
+  <section id="sport" class="page">
+    <div class="pagehead"><span class="pill">👟 MOVE YOUR WAY</span><h2>Sport Tracker</h2><p>Progres kecil tetap progres.</p></div>
+    <div class="card">
+      <div class="activityicon">🏃‍♀️</div><h3>Catat aktivitas</h3>
+      <label>Jenis aktivitas<select id="sportType"><option>Jalan kaki</option><option>Lari</option><option>Jogging</option><option>Bersepeda</option><option>Workout</option><option>Yoga</option></select></label>
+      <div class="twocol"><label>Durasi (menit)<input type="number" id="sportMinutes" min="1" value="20"></label><label>Jarak (km, opsional)<input type="number" id="sportDistance" min="0" step="0.1" placeholder="2.5"></label></div>
+      <button class="primary" id="saveSport">Simpan aktivitas</button>
+    </div>
+    <div class="stats">
+      <div class="stat"><span>⏱️</span><small>Total durasi</small><strong id="sportTotal">0 menit</strong></div>
+      <div class="stat"><span>📍</span><small>Total jarak</small><strong id="distanceTotal">0 km</strong></div>
+    </div>
+    <div class="card"><h3>Riwayat aktivitas</h3><div id="sportList" class="listempty">Belum ada aktivitas.</div></div>
+    <p class="muted tiny">Data jarak dan kalori tidak berasal dari sensor GPS atau detak jantung otomatis; ini adalah pencatatan manual.</p>
+  </section>
+
+  <section id="ai" class="page">
+    <div class="pagehead"><span class="pill">💬 YOUR AI BESTIE</span><h2>Tanya aja, Bestie!</h2><p>Jawaban edukasi umum dengan bahasa santai.</p></div>
+    <div class="chatbox" id="chatbox"><div class="bubble bot">Hai, Bestie! 💗 Aku bisa bantu edukasi umum tentang pola makan, menstruasi, olahraga, dan kehamilan. Ada yang ingin kamu tanyakan?</div></div>
+    <div class="suggestions"><button class="chip" data-question="Gimana pola makan seimbang?">Pola makan seimbang</button><button class="chip" data-question="Kenapa haid bisa telat?">Haid telat</button><button class="chip" data-question="Apa yang perlu diperhatikan saat hamil?">Tips kehamilan</button><button class="chip" data-question="Olahraga apa yang cocok untuk pemula?">Olahraga pemula</button></div>
+    <form id="chatForm" class="chatform"><input id="chatInput" placeholder="Tulis pertanyaanmu..." autocomplete="off"><button class="primary" type="submit">Kirim</button></form>
+    <div class="notice">Versi demo memakai jawaban berbasis aturan, belum terhubung ke model AI atau tenaga medis. Jangan masukkan data pribadi sensitif.</div>
+  </section>
+
+  <section id="pregnancy" class="page">
+    <div class="pagehead"><span class="pill">🤰 PREGNANCY CARE</span><h2>Kehamilan</h2><p>Informasi umum untuk mendukung percakapan dengan tenaga kesehatan.</p></div>
+    <div class="trimester">
+      <article class="trim pink"><span>01</span><h3>Trimester I</h3><b>0–12 minggu</b><p>Perkembangan awal organ. Mual dan muntah dapat terjadi.</p></article>
+      <article class="trim mint"><span>02</span><h3>Trimester II</h3><b>13–27 minggu</b><p>Pertumbuhan janin berlanjut; sebagian ibu mulai merasakan gerakan janin.</p></article>
+      <article class="trim lilac"><span>03</span><h3>Trimester III</h3><b>28–40 minggu</b><p>Janin terus matang dan tubuh bersiap menghadapi persalinan.</p></article>
+    </div>
+    <div class="card"><h3>🌿 Nutrisi penting</h3><ul class="nutrients"><li><b>Asam folat</b><span>Mendukung perkembangan tabung saraf janin.</span></li><li><b>Zat besi</b><span>Mendukung pembentukan sel darah merah.</span></li><li><b>Kalsium</b><span>Mendukung tulang dan gigi.</span></li><li><b>Protein & energi</b><span>Mendukung pertumbuhan dan kebutuhan ibu.</span></li></ul></div>
+    <div class="notice">Suplemen, obat, keamanan makanan, dan keluhan kehamilan sebaiknya dibahas dengan dokter atau bidan. Cari bantuan segera untuk tanda bahaya.</div>
+  </section>
+</main>
+<nav class="bottomnav">
+  <button class="navitem active" data-page="home"><span>⌂</span><small>Home</small></button>
+  <button class="navitem" data-page="diet"><span>🥗</span><small>Diet</small></button>
+  <button class="navitem" data-page="period"><span>🌸</span><small>Period</small></button>
+  <button class="navitem" data-page="sport"><span>👟</span><small>Sport</small></button>
+  <button class="navitem" data-page="ai"><span>💬</span><small>Bestie</small></button>
+</nav>
+<script src="app.js"></script>
+</body>
+</html>
