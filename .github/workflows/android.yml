@@ -34,7 +34,14 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      - name: Prepare Android launcher icon
+        run: |
+          npm install --no-save sharp @capacitor/assets
+          mkdir -p resources
+          cp logo-1024.png resources/icon.png
 
+    
+        
       - name: Generate Android project
         run: npx cap add android
 
