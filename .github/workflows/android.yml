@@ -1,4 +1,9 @@
 
+      - name: Prepare web assets
+        run: |
+          mkdir -p www
+          cp index.html styles.css app.js manifest.json sw.js icon-192.png icon-512.png www/
+
 name: Build Healthy Scheduled APK
 
 on:
